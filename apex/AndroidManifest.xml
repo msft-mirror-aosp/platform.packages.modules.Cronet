@@ -19,7 +19,6 @@
   <!-- APEX does not have classes.dex -->
   <application android:hasCode="false" />
   <uses-sdk
-      android:minSdkVersion="30"
-      android:targetSdkVersion="30"
+      android:minSdkVersion="29"
   />
 </manifest>
