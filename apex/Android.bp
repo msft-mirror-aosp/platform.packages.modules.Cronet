@@ -15,6 +15,8 @@
 apex {
     name: "com.android.cronet",
     manifest: "manifest.json",
+    compile_multilib: "both",
+    native_shared_libs: ["libcronet.80.0.3986.0"],
     java_libs: ["cronet_impls_java",],
     key: "com.android.cronet.key",
     certificate: ":com.android.cronet.certificate",
