@@ -15,7 +15,6 @@
 java_library {
     name: "cronet_impls_java",
     static_libs: [
-        "cronet_impl_platform_java",
         "cronet_impl_common_java",
         "cronet_impl_native_java",
     ],
@@ -28,25 +27,40 @@ java_library {
 }
 
 java_import {
-    name: "cronet_api_java",
-    jars: ["prebuilt/cronet_api.jar"],
-}
-
-java_import {
     name: "cronet_impl_native_java",
     jars: ["prebuilt/cronet_impl_native_java.jar"],
     visibility: ["//visibility:private"],
 }
 
 java_import {
-    name: "cronet_impl_platform_java",
-    jars: ["prebuilt/cronet_impl_platform_java.jar"],
-    visibility: ["//visibility:private"],
-
-}
-
-java_import {
     name: "cronet_impl_common_java",
     jars: ["prebuilt/cronet_impl_common_java.jar"],
     visibility: ["//visibility:private"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libcronet.80.0.3986.0",
+    // STOPSHIP: Confirm if it is safe
+    shared_libs: [
+        "libandroid",
+        "libc",
+        "libdl",
+        "liblog",
+        "libm",
+    ],
+    stl: "libc++_static",
+    target: {
+        android_arm64: {
+            srcs: ["prebuilt/libs/arm64-v8a/libcronet.80.0.3986.0.so"],
+        },
+        android_arm: {
+            srcs: ["prebuilt/libs/armeabi-v7a/libcronet.80.0.3986.0.so"],
+        },
+        android_x86_64: {
+            srcs: ["prebuilt/libs/x86_64/libcronet.80.0.3986.0.so"],
+        },
+        android_x86: {
+            srcs: ["prebuilt/libs/x86/libcronet.80.0.3986.0.so"],
+        },
+    },
 }
