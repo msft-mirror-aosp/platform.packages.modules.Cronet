@@ -63,6 +63,10 @@ cc_prebuilt_library_shared {
             srcs: ["prebuilt/libs/x86/libcronet.80.0.3986.0.so"],
         },
     },
+    // These are already stripped, and restripping them just issues diagnostics.
+    strip: {
+        none: true,
+    },
 }
 
 genrule {
