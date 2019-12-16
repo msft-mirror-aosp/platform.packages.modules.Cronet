@@ -23,6 +23,9 @@ apex {
 
     // Use a custom AndroidManifest.xml used for API targeting.
     androidManifest: "AndroidManifest.xml",
+
+    // STOPSHIP: Remove it after java_sdk_library is supported in apex.
+    required: ["org.chromium.net.cronet",],
 }
 
 apex_key {
