@@ -19,8 +19,7 @@ java_library {
     ],
     static_libs: [
         "cronet_impl_common_java",
-        // STOPSHIP: Re-enable Cronet native support after jni problem solved.
-        //"cronet_impl_native_java",
+        "cronet_impl_native_java",
         "cronet_impl_platform_java",
     ],
     libs: [
