@@ -64,3 +64,38 @@ cc_prebuilt_library_shared {
         },
     },
 }
+
+genrule {
+    name: "cronet_api-src",
+    srcs: ["prebuilt/cronet_api-src.jar"],
+    cmd: "cp $(in) $(out)",
+    out: [
+        "cronet_api-src.srcjar",
+    ],
+}
+
+java_sdk_library {
+    name: "org.chromium.net.cronet",
+    srcs: [
+        ":cronet_api-src",
+    ],
+    // Only public non-hide methods for now.
+    // TODO: Confirm target APIs with Cronet team.
+    api_packages: [
+        "org.chromium.net",
+    ],
+    libs: [
+        "androidx.annotation_annotation",
+    ],
+    // Add dependencies on files used by droiddoc_options.
+    droiddoc_option_files: [":cronet-api-current.txt"],
+}
+
+// Make the current.txt available for use by the cts/tests/signature tests.
+// ========================================================================
+filegroup {
+    name: "cronet-api-current.txt",
+    srcs: [
+        "api/current.txt",
+    ],
+}
