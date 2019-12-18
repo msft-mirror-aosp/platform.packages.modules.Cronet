@@ -12,27 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-java_library {
-    name: "cronet_impls_java",
-    srcs: [
-        ":cronet_api-src",
-    ],
-    static_libs: [
-        "cronet_impl_common_java",
-        "cronet_impl_native_java",
-        "cronet_impl_platform_java",
-    ],
-    libs: [
-        "androidx.annotation_annotation",
-    ],
-    dex_preopt: {
-        enabled: true,
-    },
-    installable: true,
-    sdk_version: "system_current",
-    manifest: "AndroidManifest.xml",
-}
-
 java_import {
     name: "cronet_impl_native_java",
     jars: ["prebuilt/cronet_impl_native_java.jar"],
@@ -100,6 +79,11 @@ java_sdk_library {
     libs: [
         "androidx.annotation_annotation",
     ],
+    static_libs: [
+        "cronet_impl_common_java",
+        "cronet_impl_native_java",
+        "cronet_impl_platform_java",
+    ],
     // Add dependencies on files used by droiddoc_options.
     droiddoc_option_files: [":cronet-api-current.txt"],
 }
@@ -111,13 +95,4 @@ filegroup {
     srcs: [
         "api/current.txt",
     ],
-}
-
-// STOPSHIP: Remove it after java_sdk_library is supported in apex.
-prebuilt_etc {
-    name: "org.chromium.net.cronet.apex.xml",
-    src: "org.chromium.net.cronet.xml",
-    sub_dir: "permissions",
-    filename: "org.chromium.net.cronet.xml",
-    installable: false,
 }

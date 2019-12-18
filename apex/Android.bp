@@ -17,19 +17,13 @@ apex {
     manifest: "manifest.json",
     compile_multilib: "both",
     native_shared_libs: ["libcronet.80.0.3986.0"],
-    java_libs: ["cronet_impls_java",],
-
-    // STOPSHIP: Remove it after java_sdk_library is supported in apex.
-    prebuilts: ["org.chromium.net.cronet.apex.xml"],
+    java_libs: ["org.chromium.net.cronet"],
 
     key: "com.android.cronet.key",
     certificate: ":com.android.cronet.certificate",
 
     // Use a custom AndroidManifest.xml used for API targeting.
     androidManifest: "AndroidManifest.xml",
-
-    // STOPSHIP: Remove it after java_sdk_library is supported in apex.
-    required: ["org.chromium.net.cronet",],
 }
 
 apex_key {
