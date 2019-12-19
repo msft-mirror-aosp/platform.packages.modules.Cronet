@@ -12,18 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-apex {
-    name: "com.android.cronet",
-    manifest: "manifest.json",
+apex_defaults {
+    name: "com.android.cronet-defaults",
     compile_multilib: "both",
     native_shared_libs: ["libcronet.80.0.3986.0"],
     java_libs: ["org.chromium.net.cronet"],
-
     key: "com.android.cronet.key",
     certificate: ":com.android.cronet.certificate",
 
     // Use a custom AndroidManifest.xml used for API targeting.
-    androidManifest: "AndroidManifest.xml",
+    androidManifest: ":cronet-manifest.xml",
+}
+
+filegroup {
+    name: "cronet-manifest.xml",
+    srcs: [
+        "AndroidManifest.xml",
+    ],
+}
+
+apex {
+    name: "com.android.cronet",
+    defaults: ["com.android.cronet-defaults"],
+    manifest: "manifest.json",
 }
 
 apex_key {
