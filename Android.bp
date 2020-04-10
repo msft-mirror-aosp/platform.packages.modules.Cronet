@@ -16,18 +16,21 @@ java_import {
     name: "cronet_impl_native_java",
     jars: ["prebuilt/cronet_impl_native_java.jar"],
     visibility: ["//visibility:private"],
+    apex_available: ["com.android.cronet"],
 }
 
 java_import {
     name: "cronet_impl_common_java",
     jars: ["prebuilt/cronet_impl_common_java.jar"],
     visibility: ["//visibility:private"],
+    apex_available: ["com.android.cronet"],
 }
 
 java_import {
     name: "cronet_impl_platform_java",
     jars: ["prebuilt/cronet_impl_platform_java.jar"],
     visibility: ["//visibility:private"],
+    apex_available: ["com.android.cronet"],
 }
 
 cc_prebuilt_library_shared {
@@ -59,6 +62,7 @@ cc_prebuilt_library_shared {
     strip: {
         none: true,
     },
+    apex_available: ["com.android.cronet"],
 }
 
 genrule {
@@ -90,6 +94,7 @@ java_sdk_library {
     ],
     // Add dependencies on files used by droiddoc_options.
     droiddoc_option_files: [":cronet-api-current.txt"],
+    apex_available: ["com.android.cronet"],
 }
 
 // Make the current.txt available for use by the cts/tests/signature tests.
