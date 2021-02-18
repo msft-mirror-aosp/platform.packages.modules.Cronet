@@ -19,6 +19,7 @@ apex_defaults {
     java_libs: ["org.chromium.net.cronet"],
     key: "com.android.cronet.key",
     certificate: ":com.android.cronet.certificate",
+    updatable: false,
 
     // Use a custom AndroidManifest.xml used for API targeting.
     androidManifest: ":cronet-manifest.xml",
