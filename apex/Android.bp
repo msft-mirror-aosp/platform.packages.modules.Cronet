@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
 apex_defaults {
     name: "com.android.cronet-defaults",
     compile_multilib: "both",
@@ -19,6 +23,7 @@ apex_defaults {
     java_libs: ["org.chromium.net.cronet"],
     key: "com.android.cronet.key",
     certificate: ":com.android.cronet.certificate",
+    updatable: false,
 
     // Use a custom AndroidManifest.xml used for API targeting.
     androidManifest: ":cronet-manifest.xml",
