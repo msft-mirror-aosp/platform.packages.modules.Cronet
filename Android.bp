@@ -100,6 +100,7 @@ java_sdk_library {
     droiddoc_option_files: [":cronet-api-current.txt"],
     apex_available: ["com.android.cronet"],
     unsafe_ignore_missing_latest_api: true,
+    dist_group: "android",
 }
 
 // Make the current.txt available for use by the cts/tests/signature tests.
