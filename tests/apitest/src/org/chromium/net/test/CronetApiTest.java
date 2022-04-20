@@ -33,6 +33,7 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
+import java.util.Random;
 
 import org.chromium.net.CronetEngine;
 import org.chromium.net.CronetException;
@@ -45,10 +46,10 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class CronetApiTest {
     private static final String TAG = CronetApiTest.class.getSimpleName();
-    static final String TEST_DOMAIN = "www.google.com";
     static final String HTTPS_PREFIX = "https://";
     static final int TIMEOUT_MS = 12_000;
 
+    private final String[] mTestDomains = {"www.google.com", "www.android.com"};
     @NonNull
     private CronetEngine mCronetEngine;
     @NonNull
@@ -76,6 +77,11 @@ public class CronetApiTest {
     private void assertHasTestableNetworks() {
         assertNotNull("This test requires a working Internet connection",
             mCm.getActiveNetwork());
+    }
+
+    private String getRandomDomain() {
+        int index = (new Random()).nextInt(mTestDomains.length);
+        return mTestDomains[index];
     }
 
     class VerifyUrlRequestCallback extends UrlRequest.Callback {
@@ -111,8 +117,10 @@ public class CronetApiTest {
 
         @Override
         public void onSucceeded(UrlRequest request, UrlResponseInfo info) {
-            assertEquals("Unexpected http status code", info.getHttpStatusCode(), 200);
-            assertGreaterThan("Received byte is 0", (int)info.getReceivedByteCount(), 0);
+            assertEquals("Unexpected http status code from " + mUrl + ".",
+                    info.getHttpStatusCode(), 200);
+            assertGreaterThan("Received byte from " + mUrl + " is 0.",
+                    (int)info.getReceivedByteCount(), 0);
             mLatch.countDown();
         }
 
@@ -125,7 +133,7 @@ public class CronetApiTest {
     @Test
     public void testUrlGet() throws Exception {
         assertHasTestableNetworks();
-        String url = HTTPS_PREFIX + TEST_DOMAIN;
+        String url = HTTPS_PREFIX + getRandomDomain();
         VerifyUrlRequestCallback callback = new VerifyUrlRequestCallback(url);
         UrlRequest.Builder builder = mCronetEngine.newUrlRequestBuilder(url, callback, mExecutor);
         builder.build().start();
