@@ -118,7 +118,7 @@ public class CronetApiTest {
         @Override
         public void onSucceeded(UrlRequest request, UrlResponseInfo info) {
             assertEquals("Unexpected http status code from " + mUrl + ".",
-                    info.getHttpStatusCode(), 200);
+                    200, info.getHttpStatusCode());
             assertGreaterThan("Received byte from " + mUrl + " is 0.",
                     (int)info.getReceivedByteCount(), 0);
             mLatch.countDown();
