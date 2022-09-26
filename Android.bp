@@ -38,7 +38,7 @@ java_import {
 }
 
 cc_prebuilt_library_shared {
-    name: "libcronet.107.0.5284.2",
+    name: "libcronet.80.0.3986.0",
     // STOPSHIP: Confirm if it is safe
     shared_libs: [
         "libandroid",
@@ -50,16 +50,16 @@ cc_prebuilt_library_shared {
     stl: "libc++_static",
     target: {
         android_arm64: {
-            srcs: ["prebuilt/libs/arm64-v8a/libcronet.107.0.5284.2.so"],
+            srcs: ["prebuilt/libs/arm64-v8a/libcronet.80.0.3986.0.so"],
         },
         android_arm: {
-            srcs: ["prebuilt/libs/armeabi-v7a/libcronet.107.0.5284.2.so"],
+            srcs: ["prebuilt/libs/armeabi-v7a/libcronet.80.0.3986.0.so"],
         },
         android_x86_64: {
-            srcs: ["prebuilt/libs/x86_64/libcronet.107.0.5284.2.so"],
+            srcs: ["prebuilt/libs/x86_64/libcronet.80.0.3986.0.so"],
         },
         android_x86: {
-            srcs: ["prebuilt/libs/x86/libcronet.107.0.5284.2.so"],
+            srcs: ["prebuilt/libs/x86/libcronet.80.0.3986.0.so"],
         },
     },
     // These are already stripped, and restripping them just issues diagnostics.
