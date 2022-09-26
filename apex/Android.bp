@@ -19,7 +19,7 @@ package {
 apex_defaults {
     name: "com.android.cronet-defaults",
     compile_multilib: "both",
-    jni_libs: ["libcronet.107.0.5284.2"],
+    jni_libs: ["libcronet.80.0.3986.0"],
     java_libs: ["org.chromium.net.cronet"],
     key: "com.android.cronet.key",
     certificate: ":com.android.cronet.certificate",
